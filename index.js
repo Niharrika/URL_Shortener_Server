@@ -27,12 +27,12 @@ app.get('/list', function (req, res) {
 })
 
 app.post('/create', function (req, res) {
-	console.log(req.body);
+	console.log(req.body.URL);
 	mongoClient.connect(url, function (err, client) {
 		if (err) throw err;
 		var db = client.db("urlshortener");
 		db.collection("url").insertOne({
-			long: req.body.longurl, short: shortURL()}, function(err, data) {
+			long: req.body.URL, short: shortURL()}, function(err, data) {
 				if (err) throw err;
 				client.close();
 				console.log("data stored")
