@@ -32,15 +32,15 @@ app.post('/create', function (req, res) {
 		if (err) throw err;
 		var db = client.db("urlshortener");
 		db.collection("url").insertOne({
-			long: req.body.longurl, short: shortURL(), function(err, data) {
+			long: req.body.longurl, short: shortURL()}, function(err, data) {
 				if (err) throw err;
 				client.close();
 				console.log("data stored")
 				res.send(data)
-			}
 		})
 	})
 })
+
 function shortURL() {
 	var short = "";
 	var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
